@@ -31,7 +31,15 @@ sudo /sbin/chkconfig --add grafana-server
 
 ![Image one](image-grafana-dashboard/02.png)
 
+添加数据源
 
+![Image one](image-grafana-dashboard/03.png)
+
+![Image one](image-grafana-dashboard/04.png)
+
+添加成功之后，会提示“Data source is working”。
+
+![Image one](image-grafana-dashboard/05.png)
 
 
 

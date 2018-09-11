@@ -20,6 +20,8 @@ Prometheus 的主要模块包含， Server,  Exporters, Pushgateway, PromQL, Ale
 4. Alertmanager 收到警告的时候，可以根据配置，聚合，去重，降噪，最后发送警告。
 5. 可以使用 API， Prometheus Console 或者 Grafana 查询和聚合数据。
 
+参考文档：https://songjiayang.gitbooks.io/prometheus/content/configuration/alerting.html
+
 ### 注意
 
 - Prometheus 的数据是基于时序的 float64 的值，如果你的数据值有更多类型，无法满足。
@@ -88,6 +90,8 @@ level=info ts=2018-08-26T03:07:25.561415061Z caller=main.go:502 msg="Server is r
 ![Image one](image/01-1.png)
 
 在默认配置中，我们已经添加了 Prometheus Server 的监控，所以我们现在可以使用 `PromQL` （Prometheus Query Language）来查看，比如
+
+http://54.223.231.9:9090/targets
 
 ![Image one](image/01-2.png)
 

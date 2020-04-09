@@ -30,22 +30,22 @@ Prometheus 的主要模块包含， Server,  Exporters, Pushgateway, PromQL, Ale
 使用 wget 下载 Prometheus 的安装包，https://prometheus.io/download/ 
 
 ```bash
-[ec2-user@ip-10-200-1-142 ~]$ mkdir ~/Download
-[ec2-user@ip-10-200-1-142 ~]$ cd ~/Download
-[ec2-user@ip-10-200-1-142 ~]$ wget https://github.com/prometheus/prometheus/releases/download/v2.3.2/prometheus-2.3.2.linux-amd64.tar.gz
+[ec2-user@ip-10-200-xx-xx ~]$ mkdir ~/Download
+[ec2-user@ip-10-200-xx-xx ~]$ cd ~/Download
+[ec2-user@ip-10-200-xx-xx ~]$ wget https://github.com/prometheus/prometheus/releases/download/v2.3.2/prometheus-2.3.2.linux-amd64.tar.gz
 ```
 
 使用 tar 解压缩
 
 ```bash
-[ec2-user@ip-10-200-1-142 Download]$ tar -xvzf prometheus-2.3.2.linux-amd64.tar.gz
-[ec2-user@ip-10-200-1-142 Download]$ cd prometheus-2.3.2.linux-amd64
+[ec2-user@ip-10-200-xx-xx Download]$ tar -xvzf prometheus-2.3.2.linux-amd64.tar.gz
+[ec2-user@ip-10-200-xx-xx Download]$ cd prometheus-2.3.2.linux-amd64
 ```
 
 当解压缩成功后，可以运行 version 检查运行环境是否正常（）
 
 ```bash
-[ec2-user@ip-10-200-1-142 prometheus-2.3.2.linux-amd64]$ ./promtool --version
+[ec2-user@ip-10-200-xx-xx prometheus-2.3.2.linux-amd64]$ ./promtool --version
 
 ```
 
@@ -61,7 +61,7 @@ promtool, version 2.3.2 (branch: HEAD, revision: 71af5e29e815795e9dd14742ee77256
 ### 启动 Prometheus Server
 
 ```bash
-[ec2-user@ip-10-200-1-142 prometheus-2.3.2.linux-amd64]$ ./prometheus
+[ec2-user@ip-10-200-xx-xx prometheus-2.3.2.linux-amd64]$ ./prometheus
 ```
 
 如果修改了参数，就带参数执行
@@ -75,7 +75,7 @@ promtool, version 2.3.2 (branch: HEAD, revision: 71af5e29e815795e9dd14742ee77256
 ```bash
 level=info ts=2018-08-26T03:07:25.552897231Z caller=main.go:222 msg="Starting Prometheus" version="(version=2.3.2, branch=HEAD, revision=71af5e29e815795e9dd14742ee7725682fa14b7b)"
 level=info ts=2018-08-26T03:07:25.552965313Z caller=main.go:223 build_context="(go=go1.10.3, user=root@5258e0bd9cc1, date=20180712-14:02:52)"
-level=info ts=2018-08-26T03:07:25.55300173Z caller=main.go:224 host_details="(Linux 4.14.62-65.117.amzn1.x86_64 #1 SMP Fri Aug 10 20:03:52 UTC 2018 x86_64 ip-10-200-1-142 (none))"
+level=info ts=2018-08-26T03:07:25.55300173Z caller=main.go:224 host_details="(Linux 4.14.62-65.117.amzn1.x86_64 #1 SMP Fri Aug 10 20:03:52 UTC 2018 x86_64 ip-10-200-xx-xx (none))"
 level=info ts=2018-08-26T03:07:25.553032931Z caller=main.go:225 fd_limits="(soft=1024, hard=4096)"
 level=info ts=2018-08-26T03:07:25.553789727Z caller=main.go:533 msg="Starting TSDB ..."
 level=info ts=2018-08-26T03:07:25.554992142Z caller=web.go:415 component=web msg="Start listening for connections" address=0.0.0.0:9090
@@ -212,16 +212,16 @@ rate(http_requests_total[5m])
 ### 与SQL语法对比
 
 ```bash
-[ec2-user@ip-10-200-1-142 ~]$ sudo yum install mysql56-server
-[ec2-user@ip-10-200-1-142 ~]$ sudo service mysqld start
+[ec2-user@ip-10-200-xx-xx ~]$ sudo yum install mysql56-server
+[ec2-user@ip-10-200-xx-xx ~]$ sudo service mysqld start
 开机自启动
-[ec2-user@ip-10-200-1-142 ~]$ sudo chkconfig mysqld on
+[ec2-user@ip-10-200-xx-xx ~]$ sudo chkconfig mysqld on
 ```
 
 MySQL数据准备 https://blog.csdn.net/pyufftj/article/details/20158719
 
 ```bash
-[ec2-user@ip-10-200-1-142 ~]$ mysql -u root -p
+[ec2-user@ip-10-200-xx-xx ~]$ mysql -u root -p
 mysql>
 # 创建数据库
 mysql> create database prometheus_practice;

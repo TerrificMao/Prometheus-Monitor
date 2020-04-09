@@ -17,15 +17,15 @@ http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 ```bash
 wget https://s3.cn-north-1.amazonaws.com.cn/danrong/aws-maodanrong-document-backup/Develop-Tool/develop-tool/java-jdk-8u181-linux-x64.tar.gz/jdk-8u181-linux-x64.tar.gz
-[ec2-user@ip-10-200-3-84 jvm]$ sudo cp jdk-8u181-linux-x64.tar.gz /usr/lib/jvm/
-[ec2-user@ip-10-200-3-84 jvm]$ sudo tar zxvf jdk-8u181-linux-x64.tar.gz
-[ec2-user@ip-10-200-3-84 jvm]$ sudo vim /etc/profile
+[ec2-user@ip-10-200-xx-xx jvm]$ sudo cp jdk-8u181-linux-x64.tar.gz /usr/lib/jvm/
+[ec2-user@ip-10-200-xx-xx jvm]$ sudo tar zxvf jdk-8u181-linux-x64.tar.gz
+[ec2-user@ip-10-200-xx-xx jvm]$ sudo vim /etc/profile
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_181
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
-[ec2-user@ip-10-200-3-84 jvm]$ source /etc/profile
-[ec2-user@ip-10-200-3-84 jvm]$ java -version
+[ec2-user@ip-10-200-xx-xx jvm]$ source /etc/profile
+[ec2-user@ip-10-200-xx-xx jvm]$ java -version
 java version "1.8.0_181"
 Java(TM) SE Runtime Environment (build 1.8.0_181-b13)
 Java HotSpot(TM) 64-Bit Server VM (build 25.181-b13, mixed mode)
@@ -61,13 +61,13 @@ d、kafka集群
 https://mirrors.cnnic.cn/apache/kafka/2.0.0/
 
 ```bash
-[ec2-user@ip-10-200-3-84 ~]$ wget https://mirrors.cnnic.cn/apache/kafka/2.0.0/kafka_2.12-2.0.0.tgz
-[ec2-user@ip-10-200-3-84 ~]$ tar -xzf kafka_2.12-2.0.0.tgz 
-[ec2-user@ip-10-200-3-84 ~]$ ll
+[ec2-user@ip-10-200-xx-xx ~]$ wget https://mirrors.cnnic.cn/apache/kafka/2.0.0/kafka_2.12-2.0.0.tgz
+[ec2-user@ip-10-200-xx-xx ~]$ tar -xzf kafka_2.12-2.0.0.tgz 
+[ec2-user@ip-10-200-xx-xx ~]$ ll
 总用量 48252
 drwxr-xr-x 6 ec2-user ec2-user     4096 7月  24 14:20 kafka_2.12-2.0.0
 -rw-rw-r-- 1 ec2-user ec2-user 49405896 7月  28 20:01 kafka_2.12-2.0.0.tgz
-[ec2-user@ip-10-200-3-84 ~]$ cd kafka_2.12-2.0.0
+[ec2-user@ip-10-200-xx-xx ~]$ cd kafka_2.12-2.0.0
 ```
 
 ##### 下载jmx_prometheus_javaagent（可以跳过）
@@ -101,14 +101,14 @@ cd prometheus-2.3.2.linux-amd64
 
 ```bash
 整个工程路径如下
-[ec2-user@ip-10-200-3-84 ~]$ ll
+[ec2-user@ip-10-200-xx-xx ~]$ ll
 总用量 75020
 drwxr-xr-x 6 ec2-user ec2-user     4096 8月  26 13:41 kafka_2.12-2.0.0
 -rw-rw-r-- 1 ec2-user ec2-user 49405896 7月  28 20:01 kafka_2.12-2.0.0.tgz
 drwxr-xr-x 4 ec2-user ec2-user     4096 7月  12 15:05 prometheus-2.3.2.linux-amd64
 -rw-rw-r-- 1 ec2-user ec2-user 27404353 8月  26 13:20 prometheus-2.3.2.linux-amd64.tar.gz
-[ec2-user@ip-10-200-3-84 ~]$ cd kafka_2.12-2.0.0
-[ec2-user@ip-10-200-3-84 kafka_2.12-2.0.0]$ ll
+[ec2-user@ip-10-200-xx-xx ~]$ cd kafka_2.12-2.0.0
+[ec2-user@ip-10-200-xx-xx kafka_2.12-2.0.0]$ ll
 总用量 1372
 drwxr-xr-x 3 ec2-user ec2-user    4096 7月  24 14:20 bin
 drwxr-xr-x 2 ec2-user ec2-user    4096 7月  24 14:20 config
@@ -127,20 +127,20 @@ We start a Zookeeper (a Kafka dependency) and Kafka with the JMX exporter runnin
 启动ZK，启动Kafka，把日志内容打到回收站里面去，在后台运行。会返回kafka的进程号。
 
 ```bash
-[ec2-user@ip-10-200-3-84 kafka_2.12-2.0.0]$ ./bin/zookeeper-server-start.sh config/zookeeper.properties & KAFKA_OPTS="$KAFKA_OPTS -javaagent:$PWD/jmx_prometheus_javaagent-0.9.jar=7071:$PWD/kafka-2_0_0.yml"
+[ec2-user@ip-10-200-xx-xx kafka_2.12-2.0.0]$ ./bin/zookeeper-server-start.sh config/zookeeper.properties & KAFKA_OPTS="$KAFKA_OPTS -javaagent:$PWD/jmx_prometheus_javaagent-0.9.jar=7071:$PWD/kafka-2_0_0.yml"
 ```
 
 克隆一个session，到另一个窗口启动（完成）
 
 ```bash
-[ec2-user@ip-10-200-3-84 kafka_2.12-2.0.0]$ ./bin/kafka-server-start.sh config/server.properties >/dev/null 2>&1 &
+[ec2-user@ip-10-200-xx-xx kafka_2.12-2.0.0]$ ./bin/kafka-server-start.sh config/server.properties >/dev/null 2>&1 &
 [1] 6324
 ```
 
 可以通过jps查看kafka的进程号（必须要先安装Java JDK）（完成）
 
 ```bash
-[ec2-user@ip-10-200-3-84 ~]$ jps
+[ec2-user@ip-10-200-xx-xx ~]$ jps
 5637 Kafka
 5991 Jps
 5306 QuorumPeerMain
@@ -169,7 +169,7 @@ JMX_PORT=9999 nohup ./bin/kafka-server-start.sh config/server.properties >/dev/n
 重启后观察可以发现JMX已经启动了（查看9999端口是否开启）
 
 ```bash
-[ec2-user@ip-10-200-3-84 ~]$ netstat -an | grep 9999
+[ec2-user@ip-10-200-xx-xx ~]$ netstat -an | grep 9999
 tcp        0      0 :::9999                     :::*                        LISTEN
 ```
 
@@ -190,13 +190,13 @@ http://central.maven.org/maven2/org/jmxtrans/jmxtrans/
 
 ```bash
 wget http://central.maven.org/maven2/org/jmxtrans/jmxtrans/270/jmxtrans-270.rpm
-[ec2-user@ip-10-200-3-84 ~]$ rpm -ivh jmxtrans-270.rpm
+[ec2-user@ip-10-200-xx-xx ~]$ rpm -ivh jmxtrans-270.rpm
 错误：can't create 事务 lock on /var/lib/rpm/.rpm.lock (权限不够)
-[ec2-user@ip-10-200-3-84 ~]$ sudo rpm -ivh jmxtrans-270.rpm
+[ec2-user@ip-10-200-xx-xx ~]$ sudo rpm -ivh jmxtrans-270.rpm
 准备中...                          ################################# [100%]
 正在升级/安装...
    1:jmxtrans-270-1                   ################################# [100%]
-[ec2-user@ip-10-200-3-84 ~]$ ll
+[ec2-user@ip-10-200-xx-xx ~]$ ll
 总用量 297528
 ```
 
@@ -232,10 +232,10 @@ sudo yum localinstall grafana-5.2.2-1.x86_64.rpm
 ##### 启动influxdb（完成）sgp_prod_bdp_kafk-monitor-grafana
 
 ```bash
-[ec2-user@ip-10-200-3-84 init.d]$ cd /etc/init.d
-[ec2-user@ip-10-200-3-84 init.d]$ ./influxdb start
+[ec2-user@ip-10-200-xx-xx init.d]$ cd /etc/init.d
+[ec2-user@ip-10-200-xx-xx init.d]$ ./influxdb start
 You must be root to run this script
-[ec2-user@ip-10-200-3-84 init.d]$ sudo ./influxdb start
+[ec2-user@ip-10-200-xx-xx init.d]$ sudo ./influxdb start
 Starting influxdb...
 influxdb process was started [ OK ]
 ```
@@ -243,8 +243,8 @@ influxdb process was started [ OK ]
 ##### 进入influxdb（完成）
 
 ```bash
-[ec2-user@ip-10-200-3-84 init.d]$ cd /etc/init.d
-[ec2-user@ip-10-200-3-84 init.d]$ influx
+[ec2-user@ip-10-200-xx-xx init.d]$ cd /etc/init.d
+[ec2-user@ip-10-200-xx-xx init.d]$ influx
 Connected to http://localhost:8086 version 1.6.1
 InfluxDB shell version: 1.6.1
 创建user
@@ -284,7 +284,7 @@ TotalTimeMs
 KAFKA_JMX_OPTS="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false "
 第三步: 编辑 “kafka-server-start.sh” 
 export JMX_PORT=${JMX_PORT:-9999}
-[ec2-user@ip-10-200-3-84 init.d]$ export JMX_PORT=${JMX_PORT:-9999}
+[ec2-user@ip-10-200-xx-xx init.d]$ export JMX_PORT=${JMX_PORT:-9999}
 ```
 
 ```bash
@@ -296,12 +296,12 @@ use jmxDB                --使用数据库
 ##### 启动jmxtrans（完成）sgp_prod_bdp_kafk-monitor-jxmtrans
 
 ```bash
-[ec2-user@ip-10-200-3-84 lib]$ cd /etc/init.d/
-[ec2-user@ip-10-200-3-84 init.d]$ sudo ./jmxtrans start
+[ec2-user@ip-10-200-xx-xx lib]$ cd /etc/init.d/
+[ec2-user@ip-10-200-xx-xx init.d]$ sudo ./jmxtrans start
 Starting JmxTrans...
 JmxTrans is already running.
 (备选)
-[ec2-user@ip-10-200-3-84 init.d]$ sudo ./jmxtrans start /var/lib/jmxtrans/base_10.30.41.247.json # 也可以指定json文件路径
+[ec2-user@ip-10-200-xx-xx init.d]$ sudo ./jmxtrans start /var/lib/jmxtrans/base_10.30.41.247.json # 也可以指定json文件路径
 
 进入jmxtrans目录
 /var/log/jmxtrans/jmxtrans.log
@@ -309,7 +309,7 @@ JmxTrans is already running.
 tailf jmxtrans.log
 
 [ec2-user@ip-10-30-22-192 init.d]$ cd /var/lib/jmxtrans/
-[bijieprd@ip-10-30-22-192 jmxtrans]$ ll
+[damon@ip-10-30-22-192 jmxtrans]$ ll
 -rw-r--r-- 1 root root 8480 Aug 30 02:06 base_10.30.41.247.json
 -rw-r--r-- 1 root root 8479 Aug 30 02:08 base_10.30.42.27.json
 -rw-r--r-- 1 root root 8479 Aug 30 02:08 base_10.30.43.28.json
@@ -759,8 +759,8 @@ falcon_monitor_us在每个分区最后的Offset
 ##### 启动grafana（完成）
 
 ```bash
-[ec2-user@ip-10-200-3-84 init.d]$ cd /etc/init.d
-[ec2-user@ip-10-200-3-84 init.d]$ sudo service grafana-server start
+[ec2-user@ip-10-200-xx-xx init.d]$ cd /etc/init.d
+[ec2-user@ip-10-200-xx-xx init.d]$ sudo service grafana-server start
 Starting Grafana Server: ...                               [  OK  ] ##默认是3000端口
 ```
 
@@ -773,14 +773,16 @@ Starting Grafana Server: ...                               [  OK  ] ##默认是3
 创建Kafka Topic
 
 ```bash
-[ec2-user@ip-10-200-3-84 lib]$ cd /etc/init.d/
-[ec2-user@ip-10-200-3-84 bin]$ ./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+[ec2-user@ip-10-200-xx-xx lib]$ cd /etc/init.d/
+[ec2-user@ip-10-200-xx-xx bin]$ ./kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 Created topic "test".
 ```
 
 查看监听端口
 
-[bijieprd@ip-10-30-41-132 init.d]$ netstat -an | grep 8086
+[damon@ip-10-30-41-132 init.d]$ netstat -an | grep 8086
+
+查看是否可以连接到kafka集群
 
 telnet 10.30.41.247 9999
 
